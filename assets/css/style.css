@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: rgb(166, 181, 219);
+  }
+  
+  header{
+    display: flex;
+    /*justify-content: space-between;*/
+    align-content: center;
+    padding: 1%;
+    background-color: blue;
+    color: #fff;
+    margin-bottom: 10px;
+    
+  }
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+input {
+    height: 30px;
+    width: 300px;
+}
+
+button {
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    font: 1rem 'Fira Sans', sans-serif;
+    padding: 2px 0px 2px 0px;
+}
+
+  nav ul{
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+    text-decoration: none;
+    list-style-type: none;
+  }
+  
+  .link{
+    color: #b9c6ae;
+    font-weight: bold;
+    
+  }
+  .menu{
+    color: #b9c6ae;;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    color: #fff;
+  }
+  
+  
+  
+  /* 
+  What is the flex-wrap property?
+  It specifies whether the flex items should wrap or not 
+  */
+  main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  aside {
+    flex: 1;
+    background-color: #b9c6ae;
+    padding: 80px;
+    text-align: left;
+  }
+
+  #search-state{
+    background-color: darkgrey;
+    color:white;
+  }
+
+  .state{
+    margin: 3px 3px 3px 0px;
+    
+  }
+  
+  footer {
+    padding: 20px;
+    text-align: center;
+    background: #52a2ec;
+    color: #fff;
+    font-size: smaller;
+    font-style: italic;
+  }
+  
+  
+  .products {
+    flex: 4;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  
+  .card {
+    
+    border-radius: 10px;
+    display:inline-block;
+    padding: 20px;
+    /*flex: 0 0 400px;*/
+    width:200px;
+    max-height: 100%;
+   
+  }
+  
+  .card header {
+    padding: 10px;
+  }
+  
+  .card p {
+    font-size: smaller;
+    position: relative;
+    left: 7.5px;
+    overflow: auto;
+  }
+  
+  .card img {
+    width: 60%;
+    float: left;
+  }
+
+  .card-time{
+    
+    border-style:solid;
+    border-width: 1px;
+    display:flex;
+    padding: 20px;
+    flex:auto;
+    margin-left: 50px;
+    width:100%;
+    height: 30%;
+   
+  }
+
+  #day-5{
+
+    display: flexbox;
+    margin-left: 60px;
+    width:100%;
+     
+  }
+
+   
+  /* Tablets - header changes color */
+  @media screen and (max-width: 992px) {
+    header {
+      background: blue;
+      padding: 10px;
+      flex-direction: column;
+    }
+  }
+  
+  /* Large smartphones - navbar changes color */
+  @media screen and (max-width: 768px) {
+    nav {
+      background-color: blue;
+      padding: 10px;
+      flex-direction: column;
+    }
+     
+  }
+  
+  /* Small smartphones - image placeholders change color */
+  @media screen and (max-width: 576px) {
+    main,
+    nav{
+      background-color: #8ac4ff;
+      padding: 10px;
+      flex-direction: column;
+      }
+  }
+  
