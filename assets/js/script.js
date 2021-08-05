@@ -1,6 +1,8 @@
-var key ="";
-var city = document.querySelector(".state");
-var url=""
+var weatherkey ="7dfee20f8b9610de4e24031ae9190e5d";
+var city = document.querySelector("#site-search");
+var searchBtn = document.querySelector("#search-state")
+var url="http://api.openweathermap.org/geo/1.0/direct?q="
+/*api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
 
 
 /* listen for a click on city or click on search button to get the
@@ -9,18 +11,23 @@ use queryselector all
 use addeventlistener
 */
 
-function clickState(){
-    if ('condition is true'){
-    "do something"
-}
+function getForecast(){
+    var citySearch = city.value;
+    console.log(citySearch);
+    var searchUrl = `${url}${city.value}&limit=5&appid=${weatherkey}`;
+    console.log(searchUrl);
+   
+
+    fetch(searchUrl)
+        .then(function(data){
+            console.log(data);
+
+        })
 }
 
-function clickSearch(){
-    if ('condition is true'){
-        "do something"
-    }
-}
+searchBtn.addEventListener("click", getForecast)
 
 
-var currentDay = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
- $("#currentDay").text(currentDay);
+
+/*var currentDay = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+ $("#currentDay").text(currentDay);*/
