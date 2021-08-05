@@ -1,31 +1,30 @@
-var weatherkey ="7dfee20f8b9610de4e24031ae9190e5d";
-var city = document.querySelector("#site-search");
-var searchBtn = document.querySelector("#search-state")
-var url="http://api.openweathermap.org/geo/1.0/direct?q="
+var submitBtn =document.querySelector('.submitBtn')
+var city = document.querySelector('.searchByCityName');
+var dateTag = document.querySelector('.dateTag');
+var wind = document.querySelector('.wind');
+var humidity = document.querySelector('.humidity');
+var uvIndex = document.querySelector('.uvIndex');
+/*('https://api.openweathermap.org/data/2.5/weather?q='+city.value+'&appid=7dfee20f8b9610de4e24031ae9190e5d')*/
 
 
-
-/* listen for a click on city or click on search button to get the
+/* listen for a click on search button
 
 use queryselector all
 use addeventlistener
 */
 
 function getForecast(){
-    var citySearch = city.value;
-    console.log(citySearch);
-    var searchUrl = `${url}${city.value}&limit=5&appid=${weatherkey}`;
-    console.log(searchUrl);
-   
-
-    fetch(searchUrl)
-        .then(function(data){
-            console.log(data);
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+city.value+'&appid=7dfee20f8b9610de4e24031ae9190e5d')
+        .then(response => response.json())
+        .then(data =>console.log(data))
+        /*.then(data=>{
+            var wind =data['wind']
 
         })
+        */
 }
 
-searchBtn.addEventListener("click", getForecast)
+submitBtn.addEventListener("click", getForecast)
 
 
 
