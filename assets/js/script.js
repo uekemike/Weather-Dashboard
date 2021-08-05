@@ -2,7 +2,7 @@ var weatherkey ="7dfee20f8b9610de4e24031ae9190e5d";
 var city = document.querySelector("#site-search");
 var searchBtn = document.querySelector("#search-state")
 var url="http://api.openweathermap.org/geo/1.0/direct?q="
-/*api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
+
 
 
 /* listen for a click on city or click on search button to get the
