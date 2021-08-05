@@ -24,7 +24,7 @@ function getForecast(){
             var countryNameValue =data['sys']['country'];
             var weatherValue =data['weather'][0]['description'];
             var humidityValue =data['main']['humidity'];
-            var feelsLike =data['main']['feels_like'];
+       
         
 
             //var feelslike =date.main.feels_like;
@@ -34,7 +34,7 @@ function getForecast(){
             country.innerHTML="Country: " + countryNameValue;
             weather.innerHTML="Weather: " + weatherValue;
             humidity.innerHTML="Humidity: " + humidityValue;
-            feelsLike.innerHTML="Humidity: " + feelsLike;
+           
 
             
         })
