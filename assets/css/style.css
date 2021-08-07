@@ -11,7 +11,7 @@
   header{
     display: flex;
     /*justify-content: space-between;*/
-    text-align: center;
+    align-content: center;
     padding: 1%;
     background-color: blue;
     color: #fff;
@@ -19,6 +19,9 @@
     
   }
 
+  #theHeader{
+    text-align: center;
+  }
   
 label {
     display: block;
@@ -32,8 +35,6 @@ text {
     margin: .4rem 0;
     padding: 10px 10px;
     font-family: 'Courier New', Courier, monospace;
-    height: 30px;
-    width: 300px;
     border-radius: 2px;
     border: none;
 }
@@ -46,13 +47,8 @@ submit {
     border: none;
 }
 
-button {
-    width: 300px;
-    height: 20px;
-    text-align: center;
-    font: 1rem 'Fira Sans', sans-serif;
-    padding: 2px 0px 2px 0px;
-}
+
+
 
   nav ul{
     display: flex;
@@ -88,7 +84,7 @@ button {
   }
   
   aside {
-    flex: 1;
+  flex: 1;
     background-color: #b9c6ae;
     padding: 80px;
     text-align: left;
