@@ -5,7 +5,7 @@ var country = document.querySelector('.country');
 //var dateTag = document.querySelector('.dateTag');
 var weather = document.querySelector('.weather');
 var humidity = document.querySelector('.humidity');
-var weatherIcon = document.querySelector('.weatherIcon');
+var locationIcon = document.querySelector('.weather-icon');
 
 
 
@@ -17,18 +17,20 @@ function getForecast(){
         .then(response => response.json())
         //.then(data => console.log(data))
         .then(data=>{
-            var cityNameValue =data['name'];
-            var countryNameValue =data['sys']['country'];
-            var weatherValue =data['weather'][0]['description'];
-            var humidityValue =data['main']['temp'];
-            var weatherIcon = data['weather'][0]['icon'];
-       
+            var cityNameValue =data.name;
+            var countryNameValue =data.sys.country;
+            var weatherValue =data.weather[0].description;
+            var humidityValue =data.main.temp;
+            //var humidityValue= Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+
+            var icon = ("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png'>");
+
             cityName.innerHTML="City: " + cityNameValue;
             country.innerHTML="Country: " + countryNameValue;
             weather.innerHTML="Weather: " + weatherValue;
             humidity.innerHTML="Humidity: " + humidityValue;
-            weatherIcon.innerHTML= '<img src ="http://openweathermap.org/img/w' + weatherIcon + ".png" + '"/>';
-            
+            locationIcon.innerHTML = icon;
+           
                     
         })
                
