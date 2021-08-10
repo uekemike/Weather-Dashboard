@@ -9,11 +9,11 @@ var locationIcon = document.querySelector('.weather-icon');
 
 
 
-function getDate(){
-    var today  = new Date();
-    document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
+// function getDate(){
+//     var today  = new Date();
+//     document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
    
-}
+// }
 
 
 function getForecast(){
@@ -34,7 +34,9 @@ function getForecast(){
             humidity.innerHTML="Humidity: " + humidityValue;
             temperature.innerHTML="Temp: " + tempValue;
             locationIcon.innerHTML = icon;
-
+         
+            var today  = new Date();
+            document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
                    
         })
                
@@ -71,7 +73,7 @@ function getFiveDayForecast(){
 
 
 submitBtn.addEventListener("click", getForecast )
-submitBtn.addEventListener("click", getDate) 
+//submitBtn.addEventListener("click", getDate) 
 submitBtn.addEventListener("click", getFiveDayForecast) 
 
 function getCurrentDay(){
