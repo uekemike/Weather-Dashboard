@@ -20,8 +20,8 @@ function getForecast(){
             var cityNameValue =data.name;
             var countryNameValue =data.sys.country;
             var weatherValue =data.weather[0].description;
-            var humidityValue =data.main.temp;
-            //var humidityValue= Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+            //var humidityValue =data.main.temp;
+            var humidityValue= Math.round(((parseFloat(data.main.temp)-288.53)*1.8)+32)+ "°";
 
             var icon = ("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png'>");
 
