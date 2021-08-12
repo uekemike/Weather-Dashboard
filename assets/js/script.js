@@ -26,7 +26,7 @@ function storedCities(){
   
   };
 
-  for (let i=0; i < localStorage.length; i++){
+  for (i=0; i < localStorage.length; i++){
 		var key = localStorage.key(i);
 		var value = localStorage.getItem(key);
 		
@@ -66,7 +66,7 @@ function getForecast(){
 
 function getFiveDayForecast(){
   
-        fetch('https://api.openweathermap.org/data/2.5/forecast?q=lagos&appid=7f397d92f2a24c5b09d57bf25512a15c')
+        fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&appid=7f397d92f2a24c5b09d57bf25512a15c')
         .then(response=> response.json())
         .then(data=>{
             for(i=0; i<5; i++){
