@@ -70,6 +70,9 @@ function getFiveDayForecast(){
         .then(response=> response.json())
         .then(data=>{
             for(i=0; i<5; i++){
+                    document.getElementById("day" +(i+1)+"day").innerHTML=(data.list[i].dt);
+                        }
+            for(i=0; i<5; i++){
                     document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number(data.list[i].main.temp_min -288.53).toFixed(1) + "°";
                     
             }
@@ -78,7 +81,7 @@ function getFiveDayForecast(){
             }
             
             for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
+                    document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
         }
             //for(i=0; i<5; i++){
                    // document.getElementById("day" +(i+1)+Icon).src="http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";			
