@@ -1,6 +1,7 @@
 var submitBtn =document.querySelector('.submitBtn')
 var city = document.querySelector('.searchByCityName');
 var cityName = document.querySelector('.city');
+var storedCity = document.querySelector('.storedCitiesOutput');
 var dayName = document.querySelector('.dayName');
 var weather = document.querySelector('.weather');
 var humidity = document.querySelector('.humidity');
@@ -9,11 +10,31 @@ var locationIcon = document.querySelector('.weather-icon');
 
 
 
+
 // function getDate(){
 //     var today  = new Date();
-//     document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
-   
+//     document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");  
 // }
+function storedCities(){
+
+  var key = city.value;
+  var value = city.value;
+  
+  if (key && value)
+  localStorage.setItem(key, 'city');
+  
+  
+  };
+
+  for (let i=0; i < localStorage.length; i++){
+		var key = localStorage.key(i);
+		var value = localStorage.getItem(key);
+		
+		document.getElementById("storedCitiesOutput").innerHTML +=`${key}<br />`;
+	
+displayClearCityButton();	
+}
+
 
 
 function getForecast(){
@@ -37,16 +58,14 @@ function getForecast(){
          
             var today  = new Date();
             document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
+			
                    
         })
                
 }
 
 function getFiveDayForecast(){
-    var submitBtn =document.getElementById('submitBtn');
-    var city = document.getElementById('cityInput');
-    
-        
+  
         fetch('https://api.openweathermap.org/data/2.5/forecast?q=lagos&appid=7f397d92f2a24c5b09d57bf25512a15c')
         .then(response=> response.json())
         .then(data=>{
@@ -55,15 +74,15 @@ function getFiveDayForecast(){
                     
             }
             for(i=0; i<5; i++){
-                    document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity);					
+                    document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";					
             }
             
             for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed);					
+                document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
         }
-            for(i=0; i<5; i++){
-                    document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";			
-            }
+            //for(i=0; i<5; i++){
+                   // document.getElementById("day" +(i+1)+Icon).src="http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";			
+            //}
             
         })
         
@@ -71,15 +90,18 @@ function getFiveDayForecast(){
          
      }
 
-
+function displayClearCityButton(){
+	
+	var hidden = false;
+    function action() {
+        hidden = !hidden;
+        if(hidden) {
+            document.getElementById('clearCitiesOutput').style.visibility = 'hidden';
+        } else {
+            document.getElementById('clearCitiesOutput').style.visibility = 'visible';
+        }
+    }
+}
+submitBtn.addEventListener("click", storedCities )
 submitBtn.addEventListener("click", getForecast )
-//submitBtn.addEventListener("click", getDate) 
 submitBtn.addEventListener("click", getFiveDayForecast) 
-
-function getCurrentDay(){
-var currentDay = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-$("#currentDay").text(currentDay);}
-/**/
-
-//'https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&appid=7dfee20f8b9610de4e24031ae9190e5d'
-//'https://api.openweathermap.org/data/2.5/weather?q='+city.value+'&appid=7dfee20f8b9610de4e24031ae9190e5d'
