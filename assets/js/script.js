@@ -32,7 +32,7 @@ function storedCities(){
 		
 		document.getElementById("storedCitiesOutput").innerHTML +=`${key}<br />`;
 	
-displayClearCityButton();	
+//displayClearCityButton();	
 }
 
 
@@ -93,18 +93,31 @@ function getFiveDayForecast(){
          
      }
 
-function displayClearCityButton(){
+// function displayClearCityButton(){
 	
-	var hidden = false;
-    function action() {
-        hidden = !hidden;
-        if(hidden) {
-            document.getElementById('clearCitiesOutput').style.visibility = 'hidden';
-        } else {
-            document.getElementById('clearCitiesOutput').style.visibility = 'visible';
-        }
-    }
+// 	var hidden = false;
+//     function action() {
+//         hidden = !hidden;
+//         if(hidden) {
+//             document.getElementById('clearCitiesOutput').style.visibility = 'hidden';
+//         } else {
+//             document.getElementById('clearCitiesOutput').style.visibility = 'visible';
+//         }
+//     }
+// }
+
+function clearStoredCities(){
+        if(localStorage) { // Check if the localStorage object exists
+
+                localStorage.clear()  //clears the localstorage
+            
+            } else {
+            
+                alert("Sorry, no local storage."); //an alert if localstorage is non-existing
+            }
 }
+
+
 submitBtn.addEventListener("click", storedCities )
 submitBtn.addEventListener("click", getForecast )
 submitBtn.addEventListener("click", getFiveDayForecast) 
