@@ -10,7 +10,6 @@ var locationIcon = document.querySelector('.weather-icon');
 
 
 
-
 // function getDate(){
 //     var today  = new Date();
 //     document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");  
@@ -34,8 +33,6 @@ function storedCities(){
 	
 //displayClearCityButton();	
 }
-
-
 
 function getForecast(){
  
@@ -116,7 +113,6 @@ function clearStoredCities(){
                 alert("Sorry, no local storage."); //an alert if localstorage is non-existing
             }
 }
-
 
 submitBtn.addEventListener("click", storedCities )
 submitBtn.addEventListener("click", getForecast )
