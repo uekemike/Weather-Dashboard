@@ -17,38 +17,28 @@ var locationIcon = document.querySelector('.weather-icon');
 function storedCities(){
 
     var city = document.getElementById("searchByCityName").value;
-    var cityInArray;
     if(localStorage.getItem("city") === null)
     //first value to be stored
     var cityInArray = [];
     else
-    //means there is some value already in the array
+    //Some value already exist in localstorage
     cityInArray =JSON.parse(localStorage.getItem("city"));
-
-    // next push city to data array in
-    cityInArray.push(city);
+    
+    //check if the city is already in the array if not push city
+    if(cityInArray.indexOf(city) === -1) {
+        cityInArray.push(city);
     //update localStorage
-    localStorage.setItem("city",JSON.stringify(cityInArray));
+      
+           localStorage.setItem("city",JSON.stringify(cityInArray));
 
-    document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;
+       document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
+        
 
-//   var key = city.value;
-//   var value = city.value;
-  
-//   if (key && value)
-//   localStorage.setItem(key, 'city');
-  
-  
-  };
+};
 
-//   for (i=0; i < localStorage.length; i++){
-// 		var key = localStorage.key(i);
-// 		var value = localStorage.getItem(key);
-// 		//store the values of city in an array
-// 		document.getElementById("storedCitiesOutput").innerHTML +=`${key}<br />`;
+
 	
-// //displayClearCityButton();	
-// }
+//displayClearCityButton();	
 
 function getForecast(){
  
@@ -123,6 +113,7 @@ function clearStoredCities(){
         if(localStorage) { // Check if the localStorage object exists
 
                 localStorage.clear()  //clears the localstorage
+                localStorage.removeItem(getElementById('storedCitiesOutput'))
             
             } else {
             
