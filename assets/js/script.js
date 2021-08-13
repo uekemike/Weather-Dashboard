@@ -16,23 +16,39 @@ var locationIcon = document.querySelector('.weather-icon');
 // }
 function storedCities(){
 
-  var key = city.value;
-  var value = city.value;
+    var city = document.getElementById("searchByCityName").value;
+    var cityInArray;
+    if(localStorage.getItem("city") === null)
+    //first value to be stored
+    var cityInArray = [];
+    else
+    //means there is some value already in the array
+    cityInArray =JSON.parse(localStorage.getItem("city"));
+
+    // next push city to data array in
+    cityInArray.push(city);
+    //update localStorage
+    localStorage.setItem("city",JSON.stringify(cityInArray));
+
+    document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;
+
+//   var key = city.value;
+//   var value = city.value;
   
-  if (key && value)
-  localStorage.setItem(key, 'city');
+//   if (key && value)
+//   localStorage.setItem(key, 'city');
   
   
   };
 
-  for (i=0; i < localStorage.length; i++){
-		var key = localStorage.key(i);
-		var value = localStorage.getItem(key);
-		
-		document.getElementById("storedCitiesOutput").innerHTML +=`${key}<br />`;
+//   for (i=0; i < localStorage.length; i++){
+// 		var key = localStorage.key(i);
+// 		var value = localStorage.getItem(key);
+// 		//store the values of city in an array
+// 		document.getElementById("storedCitiesOutput").innerHTML +=`${key}<br />`;
 	
-//displayClearCityButton();	
-}
+// //displayClearCityButton();	
+// }
 
 function getForecast(){
  
