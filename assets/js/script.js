@@ -31,7 +31,7 @@ function storedCities(){
       
            localStorage.setItem("city",JSON.stringify(cityInArray));
 
-       document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
+           document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
         
 
 };
@@ -55,7 +55,7 @@ function getForecast(){
 
             cityName.innerHTML=cityNameValue;
             weather.innerHTML="Weather: " + weatherValue;
-            humidity.innerHTML="Humidity: " + humidityValue;
+            humidity.innerHTML="Humidity: " + humidityValue + "%";
             temperature.innerHTML="Temp: " + tempValue;
             locationIcon.innerHTML = icon;
          
@@ -113,7 +113,10 @@ function clearStoredCities(){
         if(localStorage) { // Check if the localStorage object exists
 
                 localStorage.clear()  //clears the localstorage
-                localStorage.removeItem(getElementById('storedCitiesOutput'))
+                //localStorage.removeItem(getElementById('storedCitiesOutput'))
+                location.reload();
+                //document.getElementById("storedCitiesOutput").innerHTML = "";
+                //console.log(storedCitiesOutput)
             
             } else {
             
