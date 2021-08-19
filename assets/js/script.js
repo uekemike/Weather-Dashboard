@@ -10,13 +10,11 @@ var locationIcon = document.querySelector('.weather-icon');
 
 
 
-// function getDate(){
-//     var today  = new Date();
-//     document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");  
-// }
+
 function storedCities(){
 
     var city = document.getElementById("searchByCityName").value;
+    
     if(localStorage.getItem("city") === null)
     //first value to be stored
     var cityInArray = [];
@@ -31,7 +29,7 @@ function storedCities(){
       
            localStorage.setItem("city",JSON.stringify(cityInArray));
 
-           document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
+       document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
         
 
 };
@@ -41,15 +39,27 @@ function storedCities(){
 //displayClearCityButton();	
 
 function getForecast(){
- 
+    
+ if(city == ""){
+     alert('Please enter a city')
+
+ }
     fetch('https://api.openweathermap.org/data/2.5/weather?q='+city.value+'&appid=7dfee20f8b9610de4e24031ae9190e5d')
-        .then(response => response.json())
+    
+       
+    .then(response => response.json())
+        
         //.then(data => console.log(data))
         .then(data=>{
+            if(data.cod === '404'){
+                alert('City Not Found');
+                return;
+            } 
+            else {
             var cityNameValue =data.name;
             var weatherValue =data.weather[0].description;
             var humidityValue =data.main.humidity;
-            var tempValue= Math.round(((parseFloat(data.main.temp)-288.53)*1.8)+32)+ "°";
+            var tempValue= Math.round(parseFloat(data.main.temp* 9/5) - 459.67) + "°F";
 
             var icon = ("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png'>");
 
@@ -62,68 +72,71 @@ function getForecast(){
             var today  = new Date();
             document.getElementById("todaysDate").innerHTML = today.toLocaleDateString("en-US");
 			
+            storedCities();
                    
-        })
+        }})
                
 }
 
 function getFiveDayForecast(){
   
-        fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&appid=7f397d92f2a24c5b09d57bf25512a15c')
-        .then(response=> response.json())
-        .then(data=>{
-            for(i=0; i<5; i++){
-                    document.getElementById("day" +(i+1)+"day").innerHTML=(data.list[i].dt);
-                        }
-            for(i=0; i<5; i++){
-                    document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number(data.list[i].main.temp_min -288.53).toFixed(1) + "°";
-                    
-            }
-            for(i=0; i<5; i++){
-                    document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";					
-            }
-            
-            for(i=0; i<5; i++){
-                    document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&appid=7f397d92f2a24c5b09d57bf25512a15c')
+    .then(response=> response.json())
+    .then(data=>{
+        for(i=0; i<5; i++){
+                document.getElementById("day" +(i+1)+"day").innerHTML= (data.list[i].dt);
+                    }
+        for(i=0; i<5; i++){
+                document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number((data.list[i].main.temp_min * 9/5) - 459.67).toFixed(0) + "°F";
+                
         }
-            //for(i=0; i<5; i++){
-                   // document.getElementById("day" +(i+1)+Icon).src="http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";			
-            //}
-            
-        })
+        for(i=0; i<5; i++){
+                document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";					
+        }
         
-        //.catch(err=>alert("something went wrong"))
-         
-     }
+        for(i=0; i<5; i++){
+                document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
+        }
+        for(i=0; i<5; i++){
+        document.getElementById("day" +(i+1)+"Condition").innerHTML= "*** " + data.list[i].weather[0].description;					
+        }
+        for(i=0; i<5; i++){
+                   document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";			
+            }
+        
+        
+    })
+    
+    //.catch(err=>alert("something went wrong"))
+     
+ }
+//  function checkDay(day){
+//      var d = new Date();
+//      var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
 
-// function displayClearCityButton(){
-	
-// 	var hidden = false;
-//     function action() {
-//         hidden = !hidden;
-//         if(hidden) {
-//             document.getElementById('clearCitiesOutput').style.visibility = 'hidden';
-//         } else {
-//             document.getElementById('clearCitiesOutput').style.visibility = 'visible';
-//         }
+//      if (day + d.getDay()>6){
+//          return day + d.getDay()-7;
+
+//      } else {
+//         return day + d.getDay();
+//      }
+
+//  }
+
+//     for(i = 0; i<5; i++){
+//     document.getElementById("day" + (i+1)+"day").innerHTML = weekday([checkDay(i)].dt);
 //     }
-// }
+ 
+
 
 function clearStoredCities(){
-        if(localStorage) { // Check if the localStorage object exists
+    if(localStorage) { // Check if the localStorage object exists
 
-                localStorage.clear()  //clears the localstorage
-                //localStorage.removeItem(getElementById('storedCitiesOutput'))
-                location.reload();
-                //document.getElementById("storedCitiesOutput").innerHTML = "";
-                //console.log(storedCitiesOutput)
-            
-            } else {
-            
-                alert("Sorry, no local storage."); //an alert if localstorage is non-existing
-            }
+            localStorage.clear()  //clears the localstorage
+            location.reload();   //clears the text on the page       
+        }
 }
 
-submitBtn.addEventListener("click", storedCities )
+//submitBtn.addEventListener("click", storedCities )
 submitBtn.addEventListener("click", getForecast )
 submitBtn.addEventListener("click", getFiveDayForecast) 
