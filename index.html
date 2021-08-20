@@ -49,6 +49,7 @@
             <p class="weather"></p>
             <p class="humidity"></p>
             <p class="temp"></p>
+            <p class="uvi"></p>
             
           </diV>
 
@@ -59,46 +60,48 @@
         <h2>5-Day Forecast:</h2>
       </section>
        
-      <section class="card">
-          <header><p class = "weather" id="day1day"></p></header>
-          <p class= "minValues" id ="day1Temp"></p>
-          <p class= "maxValues" id ="day1Humid"></p>
-          <p class= "maxValues" id ="day1Speed"></p>
-          <p class= "maxValues" id ="day1Condition"></p>
-          <span class="weather-icon" id ="img1"></span>
-     </section>
-      <section class="card">
-          <header><p class = "weather" id="day2day"></p></header>
-          <p class= "minValues" id ="day2Temp"></p>
-          <p class= "maxValues" id ="day2Humid"></p>
-          <p class= "maxValues" id ="day2Speed"></p>
-          <p class= "maxValues" id ="day2Condition"></p>
-          <span class="weather-icon" id ="img2"></span>
-       </section>
-       <section class="card">
-          <header><p class = "weather" id="day3day"></p></header>
-          <p class= "minValues" id ="day3Temp"></p>
-          <p class= "maxValues" id ="day3Humid"></p>
-          <p class= "maxValues" id ="day3Speed"></p>
-          <p class= "maxValues" id ="day3Condition"></p>
-          <span class="weather-icon" id ="img3"></span>
+      <div class="cardContainner" id="cardContainer">
+        <section class="card">
+            <header><p class = "weather" id="day1day"></p></header>
+            <p class= "minValues" id ="day1Temp"></p>
+            <p class= "maxValues" id ="day1Humid"></p>
+            <p class= "maxValues" id ="day1Speed"></p>
+            <p class= "maxValues" id ="day1Condition"></p>
+            <span class="weather-icon" id ="img1"></span>
       </section>
-      <section class="card">
-          <header><p class = "weather" id="day4day"></p></header>
-          <p class= "minValues" id ="day4Temp"></p>
-          <p class= "maxValues" id ="day4Humid"></p>
-          <p class= "maxValues" id ="day4Speed"></p>
-          <p class= "maxValues" id ="day4Condition"></p>
-          <span class="weather-icon" id ="img4"></span>
-       </section>
-       <section class="card">
-          <header><p class = "weather" id="day5day"></p></header>
-          <p class= "minValues" id ="day5Temp"></p> 
-          <p class= "maxValues" id ="day5Humid"></p>
-          <p class= "maxValues" id ="day5Speed"></p>
-          <p class= "maxValues" id ="day5Condition"></p>
-          <span class="weather-icon" id ="img5"></span>
-       </section>
+        <section class="card">
+            <header><p class = "weather" id="day2day"></p></header>
+            <p class= "minValues" id ="day2Temp"></p>
+            <p class= "maxValues" id ="day2Humid"></p>
+            <p class= "maxValues" id ="day2Speed"></p>
+            <p class= "maxValues" id ="day2Condition"></p>
+            <span class="weather-icon" id ="img2"></span>
+        </section>
+        <section class="card">
+            <header><p class = "weather" id="day3day"></p></header>
+            <p class= "minValues" id ="day3Temp"></p>
+            <p class= "maxValues" id ="day3Humid"></p>
+            <p class= "maxValues" id ="day3Speed"></p>
+            <p class= "maxValues" id ="day3Condition"></p>
+            <span class="weather-icon" id ="img3"></span>
+        </section>
+        <section class="card">
+            <header><p class = "weather" id="day4day"></p></header>
+            <p class= "minValues" id ="day4Temp"></p>
+            <p class= "maxValues" id ="day4Humid"></p>
+            <p class= "maxValues" id ="day4Speed"></p>
+            <p class= "maxValues" id ="day4Condition"></p>
+            <span class="weather-icon" id ="img4"></span>
+        </section>
+        <section class="card">
+            <header><p class = "weather" id="day5day"></p></header>
+            <p class= "minValues" id ="day5Temp"></p> 
+            <p class= "maxValues" id ="day5Humid"></p>
+            <p class= "maxValues" id ="day5Speed"></p>
+            <p class= "maxValues" id ="day5Condition"></p>
+            <span class="weather-icon" id ="img5"></span>
+        </section>
+      </div>
       
     </div>
 
@@ -112,6 +115,8 @@
   </footer>
    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <!-- jQuery Core -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src ="assets/js/script.js"></script>
   </body>
 

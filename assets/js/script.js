@@ -1,4 +1,5 @@
-var submitBtn =document.querySelector('.submitBtn')
+var submitBtn =document.querySelector('.submitBtn');
+var cityButton = $(`.cityButton`);
 var city = document.querySelector('.searchByCityName');
 var cityName = document.querySelector('.city');
 var storedCity = document.querySelector('.storedCitiesOutput');
@@ -20,7 +21,7 @@ function storedCities(){
     var cityInArray = [];
     else
     //Some value already exist in localstorage
-    cityInArray =JSON.parse(localStorage.getItem("city"));
+    cityInArray = JSON.parse(localStorage.getItem("city"));
     
     //check if the city is already in the array if not push city
     if(cityInArray.indexOf(city) === -1) {
@@ -29,7 +30,15 @@ function storedCities(){
       
            localStorage.setItem("city",JSON.stringify(cityInArray));
 
-       document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;}
+           document.getElementById("storedCitiesOutput").innerHTML +=`${city}<br />`;
+        // cityInArray = JSON.parse(localStorage.getItem("city"));
+        // cityInArray.forEach(city => {
+        //         var storedCitiesButtonContainer = $(`#storedCitiesOutput`);
+        //         var cityButton = `<button data-value="${city}" class="cityButton">${city}</button>`;
+        //         storedCitiesButtonContainer.append(cityButton);
+        // })
+      
+    }
         
 
 };
@@ -80,6 +89,51 @@ function getFiveDayForecast(){
     .then(response=> response.json())
     .then(data=>{
         console.log(data);
+
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.city.coord.lat}&lon=${data.city.coord.lon}&appid=7f397d92f2a24c5b09d57bf25512a15c`)
+        .then(response => {
+            console.log(response);
+            if (response.status === 404) {
+                alert(`Error Data Found`);
+                return;
+            } else {
+                return response.json();
+            }
+        }).then(data => {
+            console.log(data);
+            var cardContainer = $(`.cardContainner`);
+            cardContainer.html(``);
+            var uvi = data.daily[0].uvi;
+            $(`.uvi`).html(`UVI: ${uvi}`);
+
+            for (var i=1; i < 6; i++) {
+
+                var daily = data.daily[i];
+
+                var day = moment.unix(daily.dt);
+                var dayformatted = moment.unix(daily.dt).format('dddd');
+                console.log(day);
+
+                var temperature = Math.round(parseFloat(daily.temp.max* 9/5) - 459.67)+ "°F";
+                var humidity = daily.humidity;
+                var windSpeed = daily.wind_speed;
+                var condition = daily.weather[0].main;
+                var forecastCards = $(`
+                    <section class="card">
+                        <header><p class="weather" id="day1day">${dayformatted}</p></header>
+                        <p class= "minValues" id ="day1Temp">${temperature}</p>
+                        <p class= "maxValues" id ="day1Humid">${humidity}</p>
+                        <p class= "maxValues" id ="day1Speed">${windSpeed}</p>
+                        <p class= "maxValues" id ="day1Condition">${condition}</p>
+                        <span class="weather-icon" id ="img1"></span>
+                    </section>
+                `);
+
+                cardContainer.append(forecastCards);
+
+            }
+            
+        })
         
         
         // data.list.splice(5);
@@ -130,6 +184,10 @@ function clearStoredCities(){
         }
 }
 
+
+
 //submitBtn.addEventListener("click", storedCities )
-submitBtn.addEventListener("click", getForecast )
-submitBtn.addEventListener("click", getFiveDayForecast) 
+submitBtn.addEventListener("click", getForecast );
+submitBtn.addEventListener("click", getFiveDayForecast);
+cityButton.on("click", getForecast );
+cityButton.on("click", getFiveDayForecast);

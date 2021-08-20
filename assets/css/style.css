@@ -100,6 +100,10 @@ submit {
     font-family:'Courier New', Courier, monospace;
     font-size: small;
   }
+
+  .cardContainner {
+    text-align: center;
+}
   
   footer {
     padding: 20px;
