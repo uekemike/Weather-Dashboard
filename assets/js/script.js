@@ -83,25 +83,17 @@ function getFiveDayForecast(){
     fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&appid=7f397d92f2a24c5b09d57bf25512a15c')
     .then(response=> response.json())
     .then(data=>{
+        console.log(data);
+        data.list.splice(5);
         for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"day").innerHTML= (data.list[i].dt);
-                    }
-        for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number((data.list[i].main.temp_min * 9/5) - 459.67).toFixed(0) + "°F";
-                
-        }
-        for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";					
-        }
+            document.getElementById("day" +(i+1)+"day").innerHTML= moment.unix(data.list[i].dt).format('dddd');
+             document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number((data.list[i].main.temp_min * 9/5) - 459.67).toFixed(0) + "°F";
+            document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";	
+            document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";		
+             document.getElementById("day" +(i+1)+"Condition").innerHTML= "*** " + data.list[i].weather[0].description;					
         
-        for(i=0; i<5; i++){
-                document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";					
-        }
-        for(i=0; i<5; i++){
-        document.getElementById("day" +(i+1)+"Condition").innerHTML= "*** " + data.list[i].weather[0].description;					
-        }
-        for(i=0; i<5; i++){
-                   document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";			
+  
+                 document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";			
             }
         
         
