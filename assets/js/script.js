@@ -34,10 +34,6 @@ function storedCities(){
 
 };
 
-
-	
-//displayClearCityButton();	
-
 function getForecast(){
     
  if(city == ""){
@@ -84,24 +80,29 @@ function getFiveDayForecast(){
     .then(response=> response.json())
     .then(data=>{
         console.log(data);
-        data.list.splice(5);
-        for(i=0; i<5; i++){
-            document.getElementById("day" +(i+1)+"day").innerHTML= moment.unix(data.list[i].dt).format('dddd');
-             document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number((data.list[i].main.temp_min * 9/5) - 459.67).toFixed(0) + "°F";
-            document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";	
-            document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";		
-             document.getElementById("day" +(i+1)+"Condition").innerHTML= "*** " + data.list[i].weather[0].description;					
+        
+        
+        // data.list.splice(5);
+        // for(i=0; i<5; i++){
+        //     document.getElementById("day" +(i+1)+"day").innerHTML= moment.unix(data.list[i].dt).format('dddd');
+        //      document.getElementById("day" +(i+1)+"Temp").innerHTML="Temperature: " +Number((data.list[i].main.temp_min * 9/5) - 459.67).toFixed(0) + "°F";
+        //     document.getElementById("day" +(i+1)+"Humid").innerHTML="Humidity: " +Number(data.list[i].main.humidity)+ "%";	
+        //     document.getElementById("day" +(i+1)+"Speed").innerHTML="Speed: " +Number(data.list[i].wind.speed)+ " mph";		
+        //      document.getElementById("day" +(i+1)+"Condition").innerHTML= "*** " + data.list[i].weather[0].description;					
         
   
-                 document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";			
-            }
+        //          document.getElementById("img" +(i+1)).src="http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";			
+        //     }
         
         
     })
     
     //.catch(err=>alert("something went wrong"))
      
- }
+}
+
+
+
 //  function checkDay(day){
 //      var d = new Date();
 //      var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
