@@ -121,10 +121,10 @@ function getFiveDayForecast(){
                 var forecastCards = $(`
                     <section class="card">
                         <header><p class="weather" id="day1day">${dayformatted}</p></header>
-                        <p class= "minValues" id ="day1Temp">${temperature}</p>
-                        <p class= "maxValues" id ="day1Humid">${humidity}</p>
-                        <p class= "maxValues" id ="day1Speed">${windSpeed}</p>
-                        <p class= "maxValues" id ="day1Condition">${condition}</p>
+                        <p class= "minValues" id ="day1Temp">Temp: ${temperature}</p>
+                        <p class= "maxValues" id ="day1Humid">Humidity: ${humidity}%</p>
+                        <p class= "maxValues" id ="day1Speed">Speed: ${windSpeed} mph</p>
+                        <p class= "maxValues" id ="day1Condition">Weather: ${condition}</p>
                         <span class="weather-icon" id ="img1"></span>
                     </section>
                 `);
