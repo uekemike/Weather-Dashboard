@@ -155,8 +155,6 @@ function getFiveDayForecast(){
      
 }
 
-
-
 //  function checkDay(day){
 //      var d = new Date();
 //      var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
